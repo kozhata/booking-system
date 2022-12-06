@@ -17,6 +17,8 @@ namespace BookingSystem.Services
 
         protected override async Task Handle(UpdateBookingCommand request, CancellationToken cancellationToken)
         {
+            // This needs to support not found/null and invalid state
+
             var booking = await _bookingRepository.GetBookingAsync(request.BookingId);
 
             booking!.Update(

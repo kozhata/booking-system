@@ -10,7 +10,7 @@
             DateTime createdOn,
             string contactNumber)
         {
-            // All domain validations, here
+            // This needs to support domain validations
 
             return new Booking(
                 name: name,

@@ -17,6 +17,8 @@ namespace BookingSystem.Queries
 
         public Task<BookingDto[]> Handle(GetBookingsQuery request, CancellationToken cancellationToken)
         {
+            // This needs to support filtering and limit the returned set
+
             return _bookingSystemDbContext.Set<Booking>()
                .AsNoTracking().Select(x => new BookingDto
                {

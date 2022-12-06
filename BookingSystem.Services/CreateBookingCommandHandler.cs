@@ -18,6 +18,8 @@ namespace BookingSystem.Services
 
         protected override async Task Handle(CreateBookingCommand request, CancellationToken cancellationToken)
         {
+            // This needs to support invalid state
+
             var newBooking = Booking.Create(
                 name: request.Request.Name,
                 createdOn: DateTime.UtcNow,

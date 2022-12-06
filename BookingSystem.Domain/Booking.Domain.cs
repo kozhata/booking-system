@@ -9,6 +9,8 @@
             string vehicleSize,
             string contactNumber)
         {
+            // This needs to support domain validations
+
             Name = name;
             Email = email;
             Flexibility = flexibility;

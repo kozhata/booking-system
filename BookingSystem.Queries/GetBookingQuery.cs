@@ -25,6 +25,8 @@ namespace BookingSystem.Queries
 
         public Task<BookingDto?> Handle(GetBookingQuery request, CancellationToken cancellationToken)
         {
+            // This needs to support not found/null
+
             return _bookingSystemDbContext.Set<Booking>()
                .AsNoTracking().Select(x => new BookingDto
                {
