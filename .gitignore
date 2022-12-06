@@ -3,3 +3,8 @@
 ################################################################################
 
 /BookingSystem.API/obj
+/BookingSystem.API/.vs/BookingSystem.API
+/BookingSystem.API/bin/Debug/net6.0
+/.vs
+/BookingSystem.Database/bin/Debug
+/BookingSystem.Database/obj/Debug

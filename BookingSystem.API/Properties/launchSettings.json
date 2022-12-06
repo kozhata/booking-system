@@ -12,7 +12,6 @@
     "BookingSystem.API": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
       "launchUrl": "weatherforecast",
       "applicationUrl": "https://localhost:7251;http://localhost:5124",
       "environmentVariables": {
@@ -21,7 +20,6 @@
     },
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchBrowser": true,
       "launchUrl": "weatherforecast",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
