@@ -1,3 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+
+using BookingSystem.Contracts;
+using BookingSystem.Services;
+using BookingSystem.Storage;
+
 namespace BookingSystem.API
 {
     public class Program
@@ -9,6 +15,22 @@ namespace BookingSystem.API
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+            builder.Services.AddDbContext<BookingSystemDbContext>(options =>
+            {
+                options.UseSqlServer("data source=(localdb)\\MSSQLLocalDB;integrated security=True;initial catalog=BookingSystem",
+                sqlServerOptionsAction: sqlOptions =>
+                {
+                    sqlOptions.EnableRetryOnFailure(
+                    maxRetryCount: 5,
+                    maxRetryDelay: TimeSpan.FromSeconds(15),
+                    errorNumbersToAdd: null);
+                });
+            });
+
+            builder.Services.AddScoped<IBookingService, BookingService>();
+            builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+            builder.Services.AddScoped<IUnitOfWork>(p => p.GetRequiredService<BookingSystemDbContext>());
 
             var app = builder.Build();
 

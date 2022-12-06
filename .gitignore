@@ -8,3 +8,11 @@
 /.vs
 /BookingSystem.Database/bin/Debug
 /BookingSystem.Database/obj/Debug
+/BookingSystem.Domain/obj
+/BookingSystem.Storage/obj
+/BookingSystem.Contracts/obj
+/BookingSystem.Contracts/bin/Debug/net6.0
+/BookingSystem.Domain/bin/Debug/net6.0
+/BookingSystem.Services/obj
+/BookingSystem.Services/bin/Debug/net6.0
+/BookingSystem.Storage/bin/Debug/net6.0
