@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 using BookingSystem.Contracts;
+using MediatR;
 
 namespace BookingSystem.API.Controllers
 {
@@ -8,25 +9,25 @@ namespace BookingSystem.API.Controllers
     [Route("api/booking")]
     public class BookingController : ControllerBase
     {
-        private readonly IBookingService _bookingService;
+        private readonly IMediator _mediator;
 
-        public BookingController(IBookingService bookingService)
+        public BookingController(IMediator mediator)
         {
-            _bookingService = bookingService;
+            _mediator = mediator;
         }
 
         [HttpPost]
         [Route("create")]
         public async Task CreateAsync([FromBody] BookingRequest bookingRequest)
         {
-            await _bookingService.CreateBooking(bookingRequest);
+            await _mediator.Send(new CreateBookingCommand(bookingRequest));
         }
 
         [HttpPatch]
         [Route("{bookingId:int}/update")]
         public async Task UpdateAsync([FromRoute] int bookingId, [FromBody] BookingRequest bookingRequest)
         {
-            await _bookingService.UpdateBooking(bookingId, bookingRequest);
+            await _mediator.Send(new UpdateBookingCommand(bookingId, bookingRequest));
         }
     }
 }

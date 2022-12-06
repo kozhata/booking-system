@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using BookingSystem.Contracts;
 using BookingSystem.Services;
 using BookingSystem.Storage;
+using MediatR;
 
 namespace BookingSystem.API
 {
@@ -28,9 +29,10 @@ namespace BookingSystem.API
                 });
             });
 
-            builder.Services.AddScoped<IBookingService, BookingService>();
             builder.Services.AddScoped<IBookingRepository, BookingRepository>();
             builder.Services.AddScoped<IUnitOfWork>(p => p.GetRequiredService<BookingSystemDbContext>());
+
+            builder.Services.AddMediatR(typeof(CommandMarker).Assembly);
 
             var app = builder.Build();
 

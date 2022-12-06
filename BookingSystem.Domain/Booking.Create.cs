@@ -10,6 +10,7 @@
             DateTime createdOn,
             string contactNumber)
         {
+            // All domain validations, here
 
             return new Booking(
                 name: name,

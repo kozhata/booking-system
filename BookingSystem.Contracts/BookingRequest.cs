@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
+
 namespace BookingSystem.Contracts
 {
     public class BookingRequest
@@ -17,14 +19,19 @@ namespace BookingSystem.Contracts
             ContactNumber = contactNumber;
         }
 
+        [Required, StringLength(50)]
         public string Name { get; }
 
+        [Required, StringLength(50)]
         public string Email { get; }
 
+        [Required, StringLength(10)]
         public string Flexibility { get; }
 
+        [Required, StringLength(10)]
         public string VehicleSize { get; }
 
+        [Required, StringLength(20)]
         public string ContactNumber { get; }
     }
 }
