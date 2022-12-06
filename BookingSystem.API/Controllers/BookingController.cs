@@ -2,11 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 
 using BookingSystem.Contracts;
 using MediatR;
+using BookingSystem.Queries;
 
 namespace BookingSystem.API.Controllers
 {
     [ApiController]
-    [Route("api/booking")]
+    [Route("api/bookings")]
     public class BookingController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -18,16 +19,30 @@ namespace BookingSystem.API.Controllers
 
         [HttpPost]
         [Route("create")]
-        public async Task CreateAsync([FromBody] BookingRequest bookingRequest)
+        public Task CreateAsync([FromBody] BookingRequest bookingRequest)
         {
-            await _mediator.Send(new CreateBookingCommand(bookingRequest));
+            return _mediator.Send(new CreateBookingCommand(bookingRequest));
         }
 
         [HttpPatch]
         [Route("{bookingId:int}/update")]
-        public async Task UpdateAsync([FromRoute] int bookingId, [FromBody] BookingRequest bookingRequest)
+        public Task UpdateAsync([FromRoute] int bookingId, [FromBody] BookingRequest bookingRequest)
         {
-            await _mediator.Send(new UpdateBookingCommand(bookingId, bookingRequest));
+            return _mediator.Send(new UpdateBookingCommand(bookingId, bookingRequest));
+        }
+
+        [HttpGet]
+        [Route("{bookingId:int}")]
+        public Task<BookingDto?> GetAsync([FromRoute] int bookingId)
+        {
+            return _mediator.Send(new GetBookingQuery(bookingId));
+        }
+
+        [HttpGet]
+        [Route("list")]
+        public Task<BookingDto[]> ListAsync()
+        {
+            return _mediator.Send(new GetBookingsQuery());
         }
     }
 }
