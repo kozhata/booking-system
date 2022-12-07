@@ -48,14 +48,20 @@ namespace BookingSystem.API
 
             builder.Services.AddMediatR(typeof(CommandMarker).Assembly, typeof(QueryMarker).Assembly);
 
+            builder.Services.AddCors(f => f.AddPolicy("AllowAll", builder =>
+            {
+                builder.AllowAnyMethod()
+                       .AllowAnyHeader()
+                       .AllowAnyOrigin();
+            }));
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
 
+            app.UseCors("AllowAll");
+
             app.UseHttpsRedirection();
-
-            app.UseAuthorization();
-
 
             app.MapControllers();
 

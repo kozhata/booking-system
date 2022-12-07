@@ -1,0 +1,47 @@
+<div class="toolbar" role="banner">
+    <span class="name-company">Booking</span>
+    <div class="spacer"></div>
+</div>
+
+<div class="content" role="main">
+    <form #myForm="ngForm" class="card" #productsForm="ngForm" (ngSubmit)="onSubmit(productsForm.value); myForm.resetForm()">
+        <mat-form-field class="input-margin" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput name="name" ngModel required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Booking Date</mat-label>
+            <input matInput name="bookDate" ngModel [matDatepicker]="picker">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="input-margin" appearance="fill">
+            <mat-label>Flexibility</mat-label>
+            <mat-select name="flexibility" ngModel required>
+                <mat-option value="+/-1Day">+/- 1 Day</mat-option>
+                <mat-option value="+/-2Day">+/- 2 Day</mat-option>
+                <mat-option value="+/-3Day">+/- 3 Day</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="input-margin" appearance="fill">
+            <mat-label>Vehicle Size</mat-label>
+            <mat-select name="vehicleSize" ngModel required>
+                <mat-option value="Small">Small</mat-option>
+                <mat-option value="Medium">Medium</mat-option>
+                <mat-option value="Large">Large</mat-option>
+                <mat-option value="Van">Van</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="input-margin" appearance="fill">
+            <mat-label>Contact Number</mat-label>
+            <input matInput name="contactNumber" ngModel required>
+        </mat-form-field>
+        <mat-form-field class="input-margin" appearance="fill">
+            <mat-label>Email Address</mat-label>
+            <input matInput name="email" ngModel required>
+        </mat-form-field>
+        <div>
+            <button [disabled]="!productsForm.valid">Submit</button>
+        </div>
+    </form>
+</div>
